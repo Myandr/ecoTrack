@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ecoTrack - Nachhaltiger leben</title>
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        button {
+            cursor: pointer;
+            border: none;
+            background: none;
+            font-family: inherit;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 5%;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 5%;
+            position: absolute;
+            width: 100%;
+            z-index: 10;
+            color: white;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .logo img {
+            height: 24px;
+            margin-right: 10px;
+        }
+
+        nav {
+            transition: all 0.3s ease;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .download-btn {
+            background-color: white;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            cursor: pointer;
+            z-index: 20;
+        }
+
+        .hamburger span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: white;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background-image: url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: flex-end;
+            padding-bottom: 10%;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            padding: 0 5%;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: -1px;
+        }
+
+        .hero p {
+            font-size: 0.9rem;
+            max-width: 500px;
+            margin-bottom: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .explore-more {
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        /* Section Common Styles */
+        section {
+            padding: 4rem 0;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            padding: 0 5%;
+        }
+
+        .tag {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: #777;
+        }
+
+        .meta {
+            display: flex;
+            gap: 2rem;
+            font-size: 0.7rem;
+            color: #777;
+        }
+
+        h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            margin-bottom: 2.5rem;
+            max-width: 800px;
+            padding: 0 5%;
+        }
+
+        /* Introduction Section */
+        .intro {
+            background-color: white;
+        }
+
+        .intro-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            padding: 0 5%;
+        }
+
+        .intro-image {
+            height: 350px;
+            overflow: hidden;
+        }
+
+        .intro-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .feature {
+            padding: 1.5rem;
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .feature.dark {
+            background-color: #333;
+            color: white;
+        }
+
+        .feature h3 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+
+        .feature img {
+            width: 30px;
+            height: 30px;
+            margin-bottom: auto;
+            opacity: 0.7;
+        }
+
+        .feature p {
+            font-size: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .learn-more {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Benefits Section */
+        .benefits {
+            background-color: white;
+        }
+
+        .benefits-content {
+            margin-bottom: 2rem;
+            padding: 0 5%;
+        }
+
+        .benefits-text p {
+            max-width: 800px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #555;
+        }
+
+        .benefits-image {
+            height: 450px;
+            background-image: url('https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem 5%;
+        }
+
+        .benefits-card {
+            background-color: white;
+            padding: 1.5rem;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .benefits-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .benefits-card p {
+            font-size: 0.9rem;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 5%;
+        }
+
+        .prev-btn, .next-btn {
+            font-size: 0.8rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        /* Projects Section */
+        .projects {
+            background-color: white;
+            padding-top: 5rem;
+        }
+
+        .projects h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+        }
+
+        .project {
+            padding: 0 5%;
+            margin-bottom: 3rem;
+        }
+
+        .project h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-images {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-images img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+            border-radius: 4px;
+        }
+
+        .project p {
+            max-width: 800px;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .project-list {
+            padding: 0 5%;
+        }
+
+        .project-item {
+            padding: 1.5rem 0;
+            border-top: 1px solid #eee;
+        }
+
+        .project-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-item-meta {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .tags .tag {
+            background-color: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            color: #333;
+        }
+
+        /* Blog Section */
+        .blog {
+            background-color: white;
+        }
+
+        .blog-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            padding: 0 5%;
+        }
+
+        .blog-image {
+            position: relative;
+            height: 350px;
+        }
+
+        .blog-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .blog-date {
+            position: absolute;
+            bottom: 1.5rem;
+            left: 1.5rem;
+            background-color: white;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+
+        .blog-text p {
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+            color: #555;
+        }
+
+        .blog-categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .blog-category {
+            margin-bottom: 1.5rem;
+        }
+
+        .blog-category h4 {
+            font-size: 1rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .read-more {
+            font-size: 0.7rem;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        /* Get Involved Section */
+        .get-involved {
+            background-image: url('https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 6rem 5%;
+            text-align: center;
+            position: relative;
+        }
+
+        .get-involved::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .get-involved-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .get-involved h2 {
+            margin-bottom: 2rem;
+            padding: 0;
+            text-align: center;
+            font-size: 2.5rem;
+        }
+
+        .get-involved h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .get-involved p {
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
+        }
+
+        .join-btn {
+            background-color: white;
+            color: #333;
+            padding: 0.7rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 5%;
+            background-color: white;
+        }
+
+        .footer-top {
+            padding-bottom: 2rem;
+            border-bottom: 1px solid #eee;
+            font-size: 1.2rem;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-bottom {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding-top: 2rem;
+        }
+
+        .footer-nav ul {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .footer-nav a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .footer-contact {
+            font-size: 0.8rem;
+        }
+
+        .footer-contact p {
+            margin-bottom: 0.5rem;
+        }
+
+        .locations {
+            display: flex;
+            gap: 3rem;
+            margin-top: 1.5rem;
+        }
+
+        .location p {
+            font-weight: 500;
+        }
+
+        .footer-policy {
+            text-align: right;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .intro-content, .blog-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .features-grid {
+                margin-top: 2rem;
+            }
+            
+            .project-images {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-bottom {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            
+            .footer-policy {
+                grid-column: span 2;
+                text-align: left;
+                margin-top: 2rem;
+            }
+        }
+
+        @media (max-width: 968px) {
+            .hamburger {
+                display: flex;
+            }
+            
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background-color: #333;
+                padding: 80px 20px 20px;
+                transition: right 0.3s ease;
+            }
+            
+            nav.active {
+                right: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            nav a {
+                font-size: 1rem;
+            }
+            
+            .download-btn {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .project-images {
+                grid-template-columns: 1fr;
+            }
+            
+            .blog-categories {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-bottom {
+                grid-template-columns: 1fr;
+            }
+            
+            .locations {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        /* Hamburger Animation */
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>ecoTrack</span>
+        </div>
+        
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#" class="active">STARTSEITE</a></li>
+                <li><a href="#">GRÜNE TECHNOLOGIE</a></li>
+                <li><a href="#">APP STORE</a></li>
+                <li><a href="#">RESSOURCEN</a></li>
+            </ul>
+        </nav>
+        <button class="download-btn">App Herunterladen</button>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>ZUKUNFT — LÖSUNG</h1>
+            <p>WERDEN SIE TEIL DER GLOBALEN GRÜNEN BEWEGUNG MIT ECOTRACKS PERSÖNLICHEM CO2-TRACKER</p>
+            <a href="#" class="explore-more">Mehr Entdecken →</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro">
+        <div class="section-header">
+            <span class="tag">EINFÜHRUNG</span>
+            <div class="meta">
+                <span class="company">ecotrack.org</span>
+                <span class="year">2024</span>
+            </div>
+        </div>
+        <h2>Förderung nachhaltiger Lebensweisen durch innovative Technologie.</h2>
+        <div class="intro-content">
+            <div class="intro-image">
+                <img src="https://images.unsplash.com/photo-1466611653911-95081537e5b7?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Windkraftanlagen auf einem Feld">
+            </div>
+            <div class="features-grid">
+                <div class="feature">
+                    <h3>CO2-Tracking</h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M21 12C21 16.9706 16.9706 21 12 21C7.02944 21 3 16.9706 3 12C3 7.02944 7.02944 3 12 3C16.9706 3 21 7.02944 21 12Z" stroke="#333" stroke-width="2"/>
+                        <path d="M12 7V12L15 15" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                    <a href="#" class="learn-more">MEHR ERFAHREN</a>
+                </div>
+                <div class="feature">
+                    <h3>Öko-Einkaufen</h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 22C9.55228 22 10 21.5523 10 21C10 20.4477 9.55228 20 9 20C8.44772 20 8 20.4477 8 21C8 21.5523 8.44772 22 9 22Z" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20 22C20.5523 22 21 21.5523 21 21C21 20.4477 20.5523 20 20 20C19.4477 20 19 20.4477 19 21C19 21.5523 19.4477 22 20 22Z" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M1 1H5L7.68 14.39C7.77144 14.8504 8.02191 15.264 8.38755 15.5583C8.75318 15.8526 9.2107 16.009 9.68 16H19.4C19.8693 16.009 20.3268 15.8526 20.6925 15.5583C21.0581 15.264 21.3086 14.8504 21.4 14.39L23 6H6" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <a href="#" class="learn-more">MEHR ERFAHREN</a>
+                </div>
+                <div class="feature dark">
+                    <h3>Nachhaltige Mobilität</h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 3H1V16H16V3Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M16 8H20L23 11V16H16V8Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M5.5 21C6.88071 21 8 19.8807 8 18.5C8 17.1193 6.88071 16 5.5 16C4.11929 16 3 17.1193 3 18.5C3 19.8807 4.11929 21 5.5 21Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M18.5 21C19.8807 21 21 19.8807 21 18.5C21 17.1193 19.8807 16 18.5 16C17.1193 16 16 17.1193 16 18.5C16 19.8807 17.1193 21 18.5 21Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <p>Berechnen Sie die CO2-Auswirkungen Ihres täglichen Pendelns und entdecken Sie umweltfreundlichere Alternativen für einen gesünderen Planeten.</p>
+                    <a href="#" class="learn-more">MEHR ERFAHREN</a>
+                </div>
+                <div class="feature">
+                    <h3>Wasserverbrauch</h3>
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2.69L17.66 8.35C18.78 9.47 19.55 10.9 19.89 12.45C20.23 14 20.12 15.61 19.58 17.1C19.04 18.6 18.09 19.93 16.83 20.94C15.57 21.95 14.05 22.6 12.45 22.82C10.85 23.04 9.22 22.82 7.75 22.18C6.28 21.54 5.03 20.52 4.11 19.2C3.2 17.88 2.67 16.32 2.57 14.7C2.47 13.08 2.81 11.46 3.54 10.02L9.19 4.37C9.55 4.01 10.01 3.8 10.5 3.8C10.99 3.8 11.45 4.01 11.81 4.37C12.17 4.73 12.38 5.19 12.38 5.68C12.38 6.17 12.17 6.63 11.81 6.99L6.69 12.11C6.2 12.6 5.85 13.21 5.66 13.88C5.48 14.55 5.48 15.25 5.66 15.92C5.85 16.59 6.2 17.2 6.69 17.69C7.18 18.18 7.79 18.53 8.46 18.72C9.13 18.9 9.84 18.9 10.51 18.72C11.18 18.53 11.79 18.18 12.28 17.69L17.4 12.57C17.76 12.21 18.22 12 18.71 12C19.2 12 19.66 12.21 20.02 12.57C20.38 12.93 20.59 13.39 20.59 13.88C20.59 14.37 20.38 14.83 20.02 15.19L14.9 20.31C13.55 21.66 11.76 22.42 9.89 22.42C8.02 22.42 6.23 21.66 4.88 20.31C3.53 18.96 2.77 17.17 2.77 15.3C2.77 13.43 3.53 11.64 4.88 10.29L10 5.17C10.9 4.26 12.11 3.74 13.37 3.74C14.64 3.74 15.85 4.26 16.75 5.17C17.66 6.07 18.18 7.28 18.18 8.55C18.18 9.81 17.66 11.02 16.75 11.93L11.63 17.05C10.29 18.4 8.5 19.16 6.63 19.16C4.76 19.16 2.97 18.4 1.62 17.05" stroke="#333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <a href="#" class="learn-more">MEHR ERFAHREN</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+        <div class="section-header">
+            <span class="tag">Vorteile</span>
+            <div class="meta">
+                <span class="company">ecotrack.org</span>
+                <span class="year">2024</span>
+            </div>
+        </div>
+        <h2>Nachhaltige und blühende Zukunft für unseren Planeten.</h2>
+        <div class="benefits-content">
+            <div class="benefits-text">
+                <p>DER PERSÖNLICHE CO2-TRACKER BIETET ZAHLREICHE VORTEILE, DIE ZU EINER NACHHALTIGEN UND BLÜHENDEN ZUKUNFT BEITRAGEN. VERSTEHEN SIE, WIE ALLTÄGLICHE ENTSCHEIDUNGEN UNSERE WELT BEEINFLUSSEN.</p>
+            </div>
+        </div>
+        <div class="benefits-image">
+            <div class="benefits-card">
+                <h3>Umweltvorteile</h3>
+                <p>Verfolgen Sie Ihren CO2-Fußabdruck und treffen Sie fundierte Entscheidungen, um Ihre Umweltauswirkungen zu reduzieren.</p>
+            </div>
+        </div>
+        <div class="navigation">
+            <button class="prev-btn">ZURÜCK</button>
+            <button class="next-btn">WEITER →</button>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects">
+        <h2>UNSERE FUNKTIONEN</h2>
+        
+        <div class="project">
+            <h3>CO2-Fußabdruck-Rechner</h3>
+            <div class="project-meta">
+                <span class="meta">Funktion</span>
+                <span class="meta">2024</span>
+            </div>
+            <div class="project-images">
+                <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Solarmodule auf dem Dach">
+                <img src="https://images.unsplash.com/photo-1552083375-1447ce886485?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Nachhaltige Landwirtschaft">
+                <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Solarmodule in der Wüste">
+            </div>
+            <p>Unser CO2-Fußabdruck-Rechner bietet detaillierte Einblicke in Ihre Umweltauswirkungen. Durch die Verfolgung Ihrer täglichen Aktivitäten bieten wir personalisierte Empfehlungen, um Ihren CO2-Fußabdruck zu reduzieren und nachhaltiger zu leben.</p>
+            <a href="#" class="learn-more">MEHR ERFAHREN →</a>
+        </div>
+
+        <div class="project-list">
+            <div class="project-item">
+                <h3>Umweltfreundlicher Einkaufsführer</h3>
+                <div class="project-item-meta">
+                    <span class="meta">Marktplatz</span>
+                    <span class="meta">2024</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Ethisch</span>
+                    <span class="tag">Zero Waste</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>Grüner Verkehrsplaner</h3>
+                <div class="project-item-meta">
+                    <span class="meta">Urbane Mobilität</span>
+                    <span class="meta">2023</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Pendeln</span>
+                    <span class="tag">Saubere Energie</span>
+                </div>
+            </div>
+
+            <div class="project-item">
+                <h3>Energieeffizienz im Haushalt</h3>
+                <div class="project-item-meta">
+                    <span class="meta">Haushalt</span>
+                    <span class="meta">2023</span>
+                </div>
+                <div class="tags">
+                    <span class="tag">Ressourcenoptimierung</span>
+                    <span class="tag">Saubere Energie</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section class="blog">
+        <div class="section-header">
+            <span class="tag">Artikel & Blog</span>
+            <div class="meta">
+                <span class="company">ecotrack.org</span>
+                <span class="year">2024</span>
+            </div>
+        </div>
+        <h2>Innovationen und Einblicke für nachhaltiges Leben.</h2>
+        <div class="blog-content">
+            <div class="blog-image">
+                <img src="https://images.unsplash.com/photo-1470137237906-d8a4f71e1966?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Berglandschaft mit See">
+                <div class="blog-date">15. Juni 2024</div>
+            </div>
+            <div class="blog-text">
+                <p>Einfache Änderungen, wie die Verwendung energieeffizienter Geräte, die Reduzierung des Wasserverbrauchs und die Einbeziehung erneuerbarer Energiequellen, können einen erheblichen Unterschied für unseren ökologischen Fußabdruck machen.</p>
+                <div class="blog-categories">
+                    <div class="blog-category">
+                        <h4>Tipps für nachhaltiges Leben</h4>
+                        <a href="#" class="read-more">MEHR LESEN</a>
+                    </div>
+                    <div class="blog-category">
+                        <h4>Innovative Energiesparlösungen</h4>
+                        <a href="#" class="read-more">MEHR LESEN</a>
+                    </div>
+                    <div class="blog-category">
+                        <h4>Durchbrüche in der Biodiversität</h4>
+                        <a href="#" class="read-more">MEHR LESEN</a>
+                    </div>
+                    <div class="blog-category">
+                        <h4>Nutzung der Energie der Natur</h4>
+                        <a href="#" class="read-more">MEHR LESEN</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Get Involved Section -->
+    <section class="get-involved">
+        <div class="get-involved-content">
+            <h2>MITMACHEN</h2>
+            <h3>Werden Sie Teil der globalen Bewegung</h3>
+            <p>Die ecoTrack-App hilft Einzelpersonen, Gemeinschaften und Unternehmen, ihre Umweltauswirkungen zu verfolgen und zu reduzieren. Schließen Sie sich Tausenden von Nutzern an, die jeden Tag einen Unterschied machen.</p>
+            <button class="join-btn">Jetzt Beitreten</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <p>© 2025awd — ecoTrack</p>
+            <p>SUERGY</p>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-nav">
+                <ul>
+                    <li><a href="#">STARTSEITE</a></li>
+                    <li><a href="#">GRÜNE TECHNOLOGIE</a></li>
+                    <li><a href="#">APP STORE</a></li>
+                    <li><a href="#">RESSOURCEN</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <p>+49 (123) 456-7890</p>
+                <p>info@ecotrack.org</p>
+                <div class="locations">
+                    <div class="location">
+                        <p>BERLIN</p>
+                        <p>FRANKFURT</p>
+                    </div>
+                    <div class="location">
+                        <p>MÜNCHEN</p>
+                        <p>HAMBURG</p>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-policy">
+                <a href="#">DATENSCHUTZ</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Hamburger Menu
+            const hamburger = document.querySelector('.hamburger');
+            const nav = document.querySelector('nav');
+            
+            hamburger.addEventListener('click', function() {
+                hamburger.classList.toggle('active');
+                nav.classList.toggle('active');
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                const isClickInside = nav.contains(event.target) || hamburger.contains(event.target);
+                
+                if (!isClickInside && nav.classList.contains('active')) {
+                    hamburger.classList.remove('active');
+                    nav.classList.remove('active');
+                }
+            });
+            
+            // Benefits navigation
+            const prevBtn = document.querySelector('.prev-btn');
+            const nextBtn = document.querySelector('.next-btn');
+            
+            // Sample benefits data
+            const benefits = [
+                {
+                    title: "Umweltvorteile",
+                    description: "Verfolgen Sie Ihren CO2-Fußabdruck und treffen Sie fundierte Entscheidungen, um Ihre Umweltauswirkungen zu reduzieren."
+                },
+                {
+                    title: "Gesundheitsvorteile",
+                    description: "Nachhaltige Entscheidungen führen oft zu einem gesünderen Lebensstil mit saubererer Luft, Wasser und Nahrung."
+                },
+                {
+                    title: "Finanzielle Vorteile",
+                    description: "Sparen Sie Geld durch die Reduzierung des Energieverbrauchs und die effizientere Nutzung von Ressourcen."
+                },
+                {
+                    title: "Gemeinschaftliche Auswirkungen",
+                    description: "Schließen Sie sich einem Netzwerk Gleichgesinnter an, die gemeinsam für eine nachhaltige Zukunft arbeiten."
+                }
+            ];
+            
+            let currentBenefitIndex = 0;
+            
+            // Update benefit card content
+            function updateBenefitCard() {
+                const benefitCard = document.querySelector('.benefits-card');
+                const benefit = benefits[currentBenefitIndex];
+                
+                benefitCard.innerHTML = `
+                    <h3>${benefit.title}</h3>
+                    <p>${benefit.description}</p>
+                `;
+            }
+            
+            // Event listeners for navigation buttons
+            if (prevBtn && nextBtn) {
+                prevBtn.addEventListener('click', function() {
+                    currentBenefitIndex = (currentBenefitIndex - 1 + benefits.length) % benefits.length;
+                    updateBenefitCard();
+                });
+                
+                nextBtn.addEventListener('click', function() {
+                    currentBenefitIndex = (currentBenefitIndex + 1) % benefits.length;
+                    updateBenefitCard();
+                });
+            }
+            
+            // Animate elements on scroll
+            const animateOnScroll = () => {
+                const elements = document.querySelectorAll('section h2, .project, .blog-content, .get-involved-content');
+                
+                function checkScroll() {
+                    elements.forEach(element => {
+                        const elementTop = element.getBoundingClientRect().top;
+                        const windowHeight = window.innerHeight;
+                        
+                        if (elementTop < windowHeight * 0.8) {
+                            element.style.opacity = '1';
+                            element.style.transform = 'translateY(0)';
+                        }
+                    });
+                }
+                
+                // Add CSS for animations
+                const style = document.createElement('style');
+                style.textContent = `
+                    section h2, .project, .blog-content, .get-involved-content {
+                        opacity: 0;
+                        transform: translateY(20px);
+                        transition: opacity 0.6s ease, transform 0.6s ease;
+                    }
+                `;
+                document.head.appendChild(style);
+                
+                // Check elements on load and scroll
+                checkScroll();
+                window.addEventListener('scroll', checkScroll);
+            };
+            
+            // Initialize scroll animations
+            animateOnScroll();
+        });
+    </script>
+</body>
+</html>
